@@ -12,8 +12,12 @@ def parse_config():
     parser = argparse.ArgumentParser(description='arg parser')
     parser.add_argument('--path_to_openlidar_dataset', type=str, default=None, help='Path to OpenLiDAR Dataset')
 
-    parser.add_argument('--path_to_openlidar_kitti_format', type=int, default=None, required=True, help='Path to Result of OpenLiDAR Dataset in KITTI Format')
+    parser.add_argument('--path_to_openlidar_kitti_format', type=str, default=None, required=True, help='Path to Result of OpenLiDAR Dataset in KITTI Format')
     #parser.add_argument('--epochs', type=int, default=None, required=False, help='number of epochs to train for')
+
+    args = parser.parse_args()
+
+    return args
 
 def read_pcd(path: str) -> np.ndarray:
     """
@@ -125,7 +129,7 @@ def convert_all(in_dir_path: str, out_dir_path: str , prefix_file_name = None ):
         raise ValueError(f"'{in_dir_path} is neither a directory or file")
 
 def main():
-    args, cfg = parse_config()
+    args = parse_config()
 
     FILE_OF_TRAIN_OPENLIDAR_DATASET_PATH = args.path_to_openlidar_dataset #"/media/ofel04/A2/240718_LiDAR benchmark/train_2022-07-30-09_01_00_01_00_00_02/"
 
