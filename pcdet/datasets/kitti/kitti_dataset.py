@@ -11,6 +11,8 @@ from ..dataset import DatasetTemplate
 
 from pathlib import Path #.Path as Path
 
+PATH_OF_3D_OBJECT_DETECTION_FOR_OPEN_LIDAR_DATASET = "/home/ofel04/OpenPCDet/"
+
 
 class KittiDataset(DatasetTemplate):
     def __init__(self, dataset_cfg, class_names, training=True, root_path=None, logger=None):
@@ -81,7 +83,7 @@ class KittiDataset(DatasetTemplate):
         if img_file.exists() == False :
             
             # Then use default pictures for KITTI training dataset
-            img_file = Path("/home/ofel04/Downloads/0000000000.png")
+            img_file = Path( PATH_OF_3D_OBJECT_DETECTION_FOR_OPEN_LIDAR_DATASET + "0000000000.png")
 
         assert img_file.exists()
         image = io.imread(img_file)
@@ -94,7 +96,7 @@ class KittiDataset(DatasetTemplate):
         if img_file.exists() == False :
             
             # Then use default pictures for KITTI training dataset
-            img_file = Path("/home/ofel04/Downloads/0000000000.png")
+            img_file = Path( PATH_OF_3D_OBJECT_DETECTION_FOR_OPEN_LIDAR_DATASET + "0000000000.png" )
         assert img_file.exists()
         return np.array(io.imread(img_file).shape[:2], dtype=np.int32)
 
@@ -123,7 +125,7 @@ class KittiDataset(DatasetTemplate):
 
         if calib_file.exists() == False :
 
-            calib_file = Path( "/home/ofel04/Downloads/data_object_calib/training/calib/000000.txt")
+            calib_file = Path( PATH_OF_3D_OBJECT_DETECTION_FOR_OPEN_LIDAR_DATASET + "000000.txt")
 
         assert calib_file.exists()
         return calibration_kitti.Calibration(calib_file)
